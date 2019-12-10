@@ -1,3 +1,6 @@
 *{
     -webkit-box-pack: center;
 }
+#panel{
+    margin-top: 10px;
+}

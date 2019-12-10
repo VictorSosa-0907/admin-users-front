@@ -1,3 +1,9 @@
 <div>
-  <router-outlet></router-outlet>
+    <pre>{{env | json}}</pre>
+</div>
+<div class="container-fluid">
+    <app-nav-bar></app-nav-bar>
+    <app-header></app-header>
+    <div id="panel"></div>
+    <router-outlet></router-outlet>
 </div>

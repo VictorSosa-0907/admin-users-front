@@ -1,0 +1,31 @@
+<h3>Lista General de Usuarios</h3>
+<table class="table table-responsive-sm table-sm">
+    <thead class="thead">
+        <tr>
+            <th scope="col" class="text-center">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Paterno</th>
+            <th scope="col">Materno</th>
+            <th scope="col">Address</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Acciones</th>
+        </tr>
+
+        <tr *ngFor="let i of userlist">
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.paterno}}</td>
+            <td>{{i.materno}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.mail}}</td>
+            <td>acciones</td>
+        </tr>
+    </thead>
+</table>
+<div class="container">
+    <angular-slickgrid gridId="grid1"
+              [columnDefinitions]="columnDefinitions"
+              [gridOptions]="gridOptions"
+              [dataset]="dataset">
+    </angular-slickgrid>
+  </div>
