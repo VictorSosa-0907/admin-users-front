@@ -10,7 +10,6 @@ import { HeaderComponent } from './estructuraGeneral/header/header.component';
 import { DepartmentComponent } from './department/department.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularSlickgridModule } from 'angular-slickgrid';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,7 @@ import { AngularSlickgridModule } from 'angular-slickgrid';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    AngularSlickgridModule.forRoot()
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

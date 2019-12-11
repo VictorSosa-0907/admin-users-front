@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../core/service/user.service';
 import { Response } from './models/Response';
 import { User } from './models/user';
-import { Column, GridOption } from 'angular-slickgrid';
 import { CataloguesService } from '../core/service/catalogues.service';
+import { Deptos } from './models/Deptos';
 
 @Component({
   selector: 'app-user',
@@ -14,10 +14,7 @@ export class UserComponent implements OnInit {
   response: Response[];
   userlist: User[];
   deptos: Deptos [];
-  columnDefinitions: Column[] = [];
-  gridOptions: GridOption = {};
-  dataset: any[] = [];
-
+ 
   constructor(private userService: UserService, private catalogService: CataloguesService) {
     //this.prepareGrid();
   }
@@ -25,11 +22,13 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.getAllUsers();
     this.getUserById();
+    this.getDepartments();
 
   }
   getDepartments() {
     this.catalogService.getDepartments().subscribe(dep => {
-
+      this.deptos = dep.data;
+      console.log(this.deptos);
     });
   }
   //Cuando el Back responde me manda un response 
