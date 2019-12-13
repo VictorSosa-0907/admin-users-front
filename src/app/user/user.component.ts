@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from '../core/service/user.service';
 import { Response } from './models/Response';
 import { User } from './models/user';
-import { CataloguesService } from '../core/service/catalogues.service';
-import { Deptos } from './models/Deptos';
 
 @Component({
   selector: 'app-user',
@@ -12,25 +10,16 @@ import { Deptos } from './models/Deptos';
 })
 export class UserComponent implements OnInit {
   response: Response[];
-  userlist: User[];
-  deptos: Deptos [];
+  @Output() userlist: User[];
  
-  constructor(private userService: UserService, private catalogService: CataloguesService) {
-    //this.prepareGrid();
+ 
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
     this.getAllUsers();
-    this.getUserById();
-    this.getDepartments();
-
   }
-  getDepartments() {
-    this.catalogService.getDepartments().subscribe(dep => {
-      this.deptos = dep.data;
-      console.log(this.deptos);
-    });
-  }
+ 
   //Cuando el Back responde me manda un response 
   //pero el contenido viene en el generico "data"
   getAllUsers(): void {
@@ -40,8 +29,8 @@ export class UserComponent implements OnInit {
   }
 
   //Detalle de usuario por Id
-  getUserById() {
-    this.userService.getUsersById(21).subscribe(usr => {
+  getUserById(user : User) {
+    this.userService.getUsersById(user.id).subscribe(usr => {
       console.log(usr);
     });
   }

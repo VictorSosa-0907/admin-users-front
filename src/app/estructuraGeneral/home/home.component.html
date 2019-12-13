@@ -1,61 +1,69 @@
-<div class="container">
-    <p>
-        <strong>Nombre:</strong> Gestión de Usuarios.<br>
-    </p>
-    <strong>Tecnologías involucradas:</strong><br>
-    <ul>
-        <li>CLI</li>
-        <li>Slickgrid</li>
-        <li>Xlsx</li>
-        <li>Spring Boot</li>
-        <li>AOP (programación orientada a aspectos )</li>
-        <li>MariaDB</li>
-        <li>Google Check Style</li>
-        <li>SonarLint</li>
-        <li>JAutoDoc</li>
-        <li>Junit</li>
-        <li>Mockito</li>
-        <li>Lombok</li>
-    </ul><br>
-    <p>
-        <strong>Descripción:</strong><br>
-        Crear aplicación web para la gestión de usuarios. La información a almacenar es la
-        siguiente:<br>
-        Nombre. Apellido Paterno. Apellido Materno. Dirección. E-mail. Telefóno (Puede tener más de uno). Departamentos
-        (Puede tener más de uno. Ej. Depto1, Depto2, etc)
-        La aplicación deberá cargar información masivamente y en línea. El resto de operaciones serán solamente sobre la
-        aplicación.
-        Aplicación CRUD. Despliegue de usuarios en el sistema.
-    </p>
-    <p>
-        <strong>Criterios de aceptación:</strong><br>
-        Success Response (Response Entity "timestamp")
-        General Response Error (Response Entity "Mensaje error + timestamp" (HTTPStatus))
-        Logging entrance and response for every entry point using AOP.
-        Name convenctions (/api/version "v1"/dominio "users"/operation"add")
-        Methods to call MS from external parts (POST, GET)
-        Define HTTPStatus code, how to use each one and in which moment.
+<div class="container-fluid" id="instrucciones">
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <strong>Nombre:</strong> Gestión de Usuarios.<br>
+            </p>
+            <strong>Tecnologías involucradas:</strong><br>
+            <ul>
+                <li>CLI</li>
+                <li>Slickgrid</li>
+                <li>Xlsx</li>
+                <li>Spring Boot</li>
+                <li>AOP (programación orientada a aspectos )</li>
+                <li>MariaDB</li>
+                <li>Google Check Style</li>
+                <li>SonarLint</li>
+                <li>JAutoDoc</li>
+                <li>Junit</li>
+                <li>Mockito</li>
+                <li>Lombok</li>
+            </ul><br>
+            <p>
+                <strong>Descripción:</strong><br>
+                Crear aplicación web para la gestión de usuarios. La información a almacenar es la
+                siguiente:<br>
+                Nombre. Apellido Paterno. Apellido Materno. Dirección. E-mail. Telefóno (Puede tener más de uno).
+                Departamentos
+                (Puede tener más de uno. Ej. Depto1, Depto2, etc)
+                La aplicación deberá cargar información masivamente y en línea. El resto de operaciones serán solamente
+                sobre la
+                aplicación.
+                Aplicación CRUD. Despliegue de usuarios en el sistema.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p>
+                <strong>Criterios de aceptación:</strong><br>
+                Success Response (Response Entity "timestamp")
+                General Response Error (Response Entity "Mensaje error + timestamp" (HTTPStatus))
+                Logging entrance and response for every entry point using AOP.
+                Name convenctions (/api/version "v1"/dominio "users"/operation"add")
+                Methods to call MS from external parts (POST, GET)
+                Define HTTPStatus code, how to use each one and in which moment.
 
-    </p>
-    <ul>
-        <li>200 = success </li>
-        <li>400 = bad request</li>
-        <li>404 = path not found / data not found</li>
-        <li>500 = exception</li>
-    </ul><br>
-    <p>
-        Implement Global Handler Exception to management the errors (RestControllerAdvice @ExceptionHandler)
-        //Identify what artifact repository we should use (GitLab)
-        Define a standard to formatting of source code.
-    </p>
-    <ul>
-        <li>Google Check Style - From now</li>
-        <li>Plugin SonarLint - From now</li>
-        <li>Plugin JAutodoc - From now</li>
-    </ul><br>
-    <p>Mocks (Pruebas unitarias de tipo integrales entre las capas del back)</p>
-        <ul>
-            <li>JUnit/li>
-            <li>Mockito</li>
-        </ul><br>
+            </p>
+            <ul>
+                <li>200 = success </li>
+                <li>400 = bad request</li>
+                <li>404 = path not found / data not found</li>
+                <li>500 = exception</li>
+            </ul><br>
+            <p>
+                Implement Global Handler Exception to management the errors (RestControllerAdvice @ExceptionHandler)
+                //Identify what artifact repository we should use (GitLab)
+                Define a standard to formatting of source code.
+            </p>
+            <ul>
+                <li>Google Check Style - From now</li>
+                <li>Plugin SonarLint - From now</li>
+                <li>Plugin JAutodoc - From now</li>
+            </ul><br>
+            <p>Mocks (Pruebas unitarias de tipo integrales entre las capas del back)</p>
+            <ul>
+                <li>JUnit/li>
+                <li>Mockito</li>
+            </ul><br>
+        </div>
+    </div>
 </div>

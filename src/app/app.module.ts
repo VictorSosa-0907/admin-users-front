@@ -10,6 +10,10 @@ import { HeaderComponent } from './estructuraGeneral/header/header.component';
 import { DepartmentComponent } from './department/department.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DetailComponent } from './user/detail/detail.component';
+import { EditComponent } from './user/edit/edit.component';
+import { DeleteComponent } from './user/delete/delete.component';
+import { NewComponent } from './user/new/new.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     UserComponent,
     DepartmentComponent,
+    DetailComponent,
+    EditComponent,
+    DeleteComponent,
+    NewComponent,
   ],
   imports: [
     BrowserModule,
