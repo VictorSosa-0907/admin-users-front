@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-success btn-lg" (click)="send()">Guardar</button>
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-danger btn-lg" [disabled]="!(arrayRows.length > 0)"
+                (click)="delete()">Eliminar</button>
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-warning btn-lg" (click)="upload()">Upload</button>
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-info btn-lg" (click)="clear()">Limpiar</button>
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-secondary btn-lg" [disabled]="!(dataset.length > 0)"
+                (click)="add()">Agregar</button>
+        </div>
+        <div class="col-md-5">
+            <input type="file" (change)="incomingfile($event)" accept=".xlsx">
+        </div>
+    </div>
+</div>
+<div class="container-fluid tabla">
+    <angular-slickgrid gridId="slickgrid" [columnDefinitions]="columnDefinitions" [gridOptions]="gridOptions"
+        [dataset]="dataset" (onAngularGridCreated)="angularGridReady($event)"
+        (sgOnSelectedRowsChanged)="onSelectedRowsChanged($event.detail.eventData, $event.detail.args)"
+        (gridPaginationOptions)="gridOptions">
+    </angular-slickgrid>
+</div>

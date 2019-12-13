@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { UserService } from '../core/service/user.service';
 import { Response } from './models/Response';
 import { User } from './models/user';
 import { CataloguesService } from '../core/service/catalogues.service';
 import { Deptos } from './models/Deptos';
+import { Column, GridOption, AngularGridInstance, FieldType, Editors, Formatters, OnEventArgs, Filters, GridOdataService } from 'angular-slickgrid';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-user',
@@ -12,19 +14,17 @@ import { Deptos } from './models/Deptos';
 })
 export class UserComponent implements OnInit {
   response: Response[];
-  userlist: User[];
-  deptos: Deptos [];
- 
+  @Output() userlist: User[];
+  @Output() deptos: Deptos[];
+
   constructor(private userService: UserService, private catalogService: CataloguesService) {
-    //this.prepareGrid();
   }
 
   ngOnInit() {
     this.getAllUsers();
-    this.getUserById();
-    this.getDepartments();
-
+    this.getDepartments(); 
   }
+
   getDepartments() {
     this.catalogService.getDepartments().subscribe(dep => {
       this.deptos = dep.data;
