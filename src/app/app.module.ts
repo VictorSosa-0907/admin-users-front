@@ -18,6 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { SlickgridComponent } from './slickgrid/slickgrid.component';
 import { UserAddComponent } from './user/user-add/user-add.component';
 import { UserUpdComponent } from './user/user-upd/user-upd.component';
+import { DetailComponent } from './user/detail/detail.component';
+import { EditComponent } from './user/edit/edit.component';
+import { DeleteComponent } from './user/delete/delete.component';
+import { NewComponent } from './user/new/new.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { UserUpdComponent } from './user/user-upd/user-upd.component';
     SlickgridComponent,
     UserAddComponent,
     UserUpdComponent,
+    DetailComponent,
+    EditComponent,
+    DeleteComponent,
+    NewComponent,
   ],
   imports: [
     BrowserModule,

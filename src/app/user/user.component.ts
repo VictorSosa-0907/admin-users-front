@@ -17,20 +17,24 @@ export class UserComponent implements OnInit {
   @Output() userlist: User[];
   @Output() deptos: Deptos[];
 
-  constructor(private userService: UserService, private catalogService: CataloguesService) {
+  //constructor(private userService: UserService, private catalogService: CataloguesService) {
+ 
+ 
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
     this.getAllUsers();
-    this.getDepartments(); 
+    //this.getDepartments(); 
   }
 
-  getDepartments() {
-    this.catalogService.getDepartments().subscribe(dep => {
-      this.deptos = dep.data;
-      console.log(this.deptos);
-    });
-  }
+  // getDepartments() {
+  //   this.catalogService.getDepartments().subscribe(dep => {
+  //     this.deptos = dep.data;
+  //     console.log(this.deptos);
+  //   });
+  // }
+ 
   //Cuando el Back responde me manda un response 
   //pero el contenido viene en el generico "data"
   getAllUsers(): void {
@@ -40,8 +44,8 @@ export class UserComponent implements OnInit {
   }
 
   //Detalle de usuario por Id
-  getUserById() {
-    this.userService.getUsersById(21).subscribe(usr => {
+  getUserById(user : User) {
+    this.userService.getUsersById(user.id).subscribe(usr => {
       console.log(usr);
     });
   }

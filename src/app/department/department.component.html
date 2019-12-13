@@ -1,1 +1,14 @@
-<p>department works!</p>
+<h3>Lista General de Departamentos</h3>
+<table class="table table-responsive-sm table-sm">
+    <thead class="thead">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+        </tr>
+
+        <tr *ngFor="let i of deptos">
+            <td>{{i.id}}</td>
+            <td>{{i.description}}</td>
+        </tr>
+    </thead>
+</table>

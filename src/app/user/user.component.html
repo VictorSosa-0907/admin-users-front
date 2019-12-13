@@ -5,8 +5,8 @@
             <th scope="col">Nombre</th>
             <th scope="col">Paterno</th>
             <th scope="col">Materno</th>
-            <th scope="col">Address</th>
-            <th scope="col">Mail</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">E-mail</th>
             <th scope="col">Acciones</th>
         </tr>
 
@@ -17,33 +17,34 @@
             <td>{{i.materno}}</td>
             <td>{{i.address}}</td>
             <td>{{i.mail}}</td>
-            <td class="text-center">
+            <td>
                 <div class="row">
                     <div class="col-sm-2">
-                        <button class="btn btn-small btn-info margin-r" triggers="mouseenter:mouseleave"
-                            data-toggle="modal" data-target="#editForm" (click)="updateUser(i)">
-                            <i class="fas fa-pen"></i>
-                        </button>
+                        <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
+                            data-target="#edition"><i class="fas fa-edit"></i></button>
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-small btn-warning margin-r" data-target="#viewForm"
-                            triggers="mouseenter:mouseleave" data-toggle="modal" (click)="getUserById(i)">
-                            <i class="fas fa-question"></i>
-                        </button>
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#details"><i
+                                class="fas fa-info"></i></button>
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-small btn-danger margin-r" data-target="#deleteForm"
-                            triggers="mouseenter:mouseleave" data-toggle="modal" (click)="setLawDetail(item)">
-                            <i class="fas fa-times"></i>
-                        </button>
+                        <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete"><i
+                                class="fas fa-times"></i></button>
                     </div>
                 </div>
+
             </td>
         </tr>
     </thead>
 </table>
-<button class="btn btn-small btn-success margin-r" ngbPopover="Nuevo" data-target="#viewForm"
-    triggers="mouseenter:mouseleave" data-toggle="modal" (click)="setLawDetail(item)">
-    Nuevo
-</button>
+
+<div class="col-sm-2">
+    <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target="#new">Nuevo <i
+            class="fas fa-plus"></i></button>
+</div>
+<app-detail></app-detail>
+<app-edit></app-edit>
+<app-delete></app-delete>
+<app-new></app-new>
+
 <app-slickgrid [userlist]="userlist" [deptos]="deptos"></app-slickgrid>
