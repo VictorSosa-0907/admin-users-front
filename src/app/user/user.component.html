@@ -20,16 +20,16 @@
             <td>
                 <div class="row">
                     <div class="col-sm-2">
-                        <button class="btn btn-warning btn-sm" type="button" data-toggle="modal"
-                            data-target="#edition"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target="#edition"
+                            triggers="mouseenter:mouseleave" (click)="setUser(i)"><i class="fas fa-edit"></i></button>
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#details"><i
-                                class="fas fa-info"></i></button>
+                        <button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#details"
+                            triggers="mouseenter:mouseleave" (click)="getUserById(i.id)"><i class="fas fa-info"></i></button>
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete"><i
-                                class="fas fa-times"></i></button>
+                        <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#delete"
+                            triggers="mouseenter:mouseleave" (click)="setUser(i)"><i class="fas fa-times"></i></button>
                     </div>
                 </div>
 
@@ -42,9 +42,7 @@
     <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target="#new">Nuevo <i
             class="fas fa-plus"></i></button>
 </div>
-<app-detail></app-detail>
-<app-edit></app-edit>
-<app-delete></app-delete>
+<app-edit  (refresh)= "loadUsers()" (clearEdit)="clearUserEdit()" [userEdit]="user" [phones]="dphones" [deptos]="ddeptos"></app-edit  >
+<app-detail [userDetail]="user" [phones]="dphones" [deptos]="ddeptos"></app-detail>
+<app-delete [userDelete]="user"></app-delete>
 <app-new></app-new>
-
-<app-slickgrid [userlist]="userlist" [deptos]="deptos"></app-slickgrid>

@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Detalles de Registro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)= "clearModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -14,45 +14,43 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="paterno">A. Paterno</label><br>
-                            <label>paterno</label>
+                            <label>{{paterno}}</label>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="materno">A. Materno</label><br>
-                            <label>materno</label>
+                            <label>{{materno}}</label>
                         </div>
                         <div class="form-group col-md-12">
                             <label for="nombre">Nombre</label><br>
-                            <label>nombre</label>
+                            <label>{{name}}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="dir">Dirección</label><br>
-                        <label>direccion</label>
+                        <label>{{address}}</label>
                     </div>
                     <div class="form-group">
                         <label for="mail">Email</label><br>
-                        <label>email</label>
+                        <label>{{mail}}</label>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="phone">Telefono (s)</label><br>
-                            <label>telefonos</label>
+                            <label class="labels">Telefono (s)</label><br>
+                            <ul *ngFor="let i of phones">
+                                <li>{{i}}</li>
+                            </ul>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleFormControlSelect2">Departamentos</label>
-                            <select multiple class="form-control" id="exampleFormControlSelect2">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                            <ul *ngFor="let i of deptos">
+                                <li>{{i}}</li>
+                            </ul>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearModal()"> Cerrar</button>
             </div>
         </div>
     </div>

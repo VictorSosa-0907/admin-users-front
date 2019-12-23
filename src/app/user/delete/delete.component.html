@@ -15,22 +15,27 @@
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="nombre">Nombre</label><br>
-                        <label>nombre</label>
+                        <label>{{name}}</label>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="paterno">A. Paterno</label><br>
-                        <label>paterno</label>
+                        <label>{{paterno}}</label>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="materno">A. Materno</label><br>
-                        <label>materno</label>
+                        <label>{{materno}}</label>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearModal()">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="deleteUser(userDelete)">Aceptar</button>
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="code == 200" class="alert alert-success" role="alert">
+    <h4 class="alert-heading">{{response.detailMessage}}</h4>
+    <p>Usuario: {{response.data.name}} {{response.data.paterno}} {{response.data.materno}}</p>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { UserService } from '../core/service/user.service';
 import { Response } from './models/Response';
 import { User } from './models/user';
@@ -14,27 +14,22 @@ import * as XLSX from 'xlsx';
 })
 export class UserComponent implements OnInit {
   response: Response[];
-  @Output() userlist: User[];
-  @Output() deptos: Deptos[];
+  userlist: User[];
+  deptos: Deptos[];
+  user: User;
+  dphones: string[];
+  ddeptos: string[];
+  phones: string[];
+  loading: boolean;
 
-  //constructor(private userService: UserService, private catalogService: CataloguesService) {
- 
- 
   constructor(private userService: UserService) {
+    this.loading = true;
   }
 
   ngOnInit() {
     this.getAllUsers();
-    //this.getDepartments(); 
+    this.loadUsers();
   }
-
-  // getDepartments() {
-  //   this.catalogService.getDepartments().subscribe(dep => {
-  //     this.deptos = dep.data;
-  //     console.log(this.deptos);
-  //   });
-  // }
- 
   //Cuando el Back responde me manda un response 
   //pero el contenido viene en el generico "data"
   getAllUsers(): void {
@@ -43,24 +38,36 @@ export class UserComponent implements OnInit {
     });
   }
 
-  //Detalle de usuario por Id
-  getUserById(user : User) {
-    this.userService.getUsersById(user.id).subscribe(usr => {
-      console.log(usr);
-    });
-  }
-  //  usr = new User();
-  //  idDeptos: number[] = [1, 2, 3];
-  //  phones: string[] = ["1234", "5678"];
-  //   usr.buildUser("jose", "sosa", "sosa", "avenida tal # 19", "jose@gmail.com", phones, idDeptos);
-  //guardar usuario
   saveUser(user: User) {
     this.userService.saveUser(user);
   }
-  updateUser(user: User) {
-    this.userService.updateUser(user);
+
+  setUser(usr: User) {
+    this.user = usr;
   }
-  deleteUser(id: number) {
-    this.userService.deleteUser(id);
+  getUserById(u: number) {
+    this.userService.getUsersById(u).subscribe(usr => {
+      this.user = usr.data;
+      this.dphones = this.user.phones;
+      this.ddeptos = this.user.department;
+    });
   }
+
+  clearUserEdit(){
+    this.user = undefined;
+  }
+
+  loadUsers(): void {
+    this.userlist = [];
+    let u: User;
+    this.userService.getUsers().subscribe(value => {
+      value.data.forEach(element => {
+        u = element;
+        const itemGeneral = new User();
+        this.userlist.push(itemGeneral);
+      });
+      this.loading = false;
+    });
+  }
+  
 }

@@ -14,47 +14,67 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="paterno">A. Paterno</label>
-                            <input type="text" class="form-control" id="paterno" placeholder="Apellido paterno">
+                            <input type="text" class="form-control" id="paterno">{{paterno}}
                         </div>
                         <div class="form-group col-md-6">
                             <label for="materno">A. Materno</label>
-                            <input type="text" class="form-control" id="materno" placeholder="Apellido materno">
+                            <input type="text" class="form-control" id="materno" placeholder="">{{materno}}
                         </div>
                         <div class="form-group col-md-12">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Nombre(s)">
+                            <input type="text" class="form-control" id="nombre" placeholder="">{{name}}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="dir">Dirección</label>
-                        <input type="text" class="form-control" id="dir" placeholder="1234 Main St">
+                        <input type="text" class="form-control" id="dir" placeholder="">{{address}}
                     </div>
                     <div class="form-group">
                         <label for="mail">Email</label>
-                        <input type="email" class="form-control" id="mail" placeholder="usuario@gmail.com">
+                        <input type="email" class="form-control" id="mail" placeholder="">{{mail}}
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="phone">Telefono (s)</label>
-                            <input type="text" class="form-control" id="phone">
+                            <label class="labels">Telefono (s)</label><br>
+                            <ul *ngFor="let i of phones">
+                                <li>{{i}}</li>
+                            </ul>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleFormControlSelect2">Departamentos</label>
-                            <select multiple class="form-control" id="exampleFormControlSelect2">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
+                            <ul *ngFor="let i of deptos">
+                                <li>{{i}}</li>
+                            </ul>
                         </div>
                     </div>
+                    <!-- <div class="col-4">
+                        <label>Departamento(s) :
+                          <span class="input-group-addon">
+                            <i class="far fa-question-circle" triggers="mouseenter:mouseleave"></i>
+                          </span>
+                        </label>
+                        <div class="form-group">
+                          <div class="col-6 barras">                 
+                            <div formArrayName="selectedAreaMod">
+                              <div *ngFor="let areaMod of selectedAreaMod.controls; let j=index">
+                                
+                                  <input type="checkbox" (click)="departamentoMod(j)"/>
+                                  {{deptos[j].description}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearModal()">Cancelar</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="updateUser(userEdit)">Guardar</button>
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="code == 200" class="alert alert-success" role="alert">
+    <h4 class="alert-heading">{{response.detailMessage}}</h4>
+    <p>Usuario: {{response.data.name}} {{response.data.paterno}} {{response.data.materno}}</p>
 </div>

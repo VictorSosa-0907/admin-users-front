@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../../estructuraGeneral/home/home.component';
 import { UserComponent } from '../../user/user.component';
 import { DepartmentComponent } from '../../department/department.component';
+import { SlickgridComponent } from 'src/app/slickgrid/slickgrid.component';
 
 const ROUTES: Routes = [
   {
@@ -13,6 +14,11 @@ const ROUTES: Routes = [
     path: "user",
     component: UserComponent
   },
+  {
+    path: "slickgrid",
+    component: SlickgridComponent
+  },
+
   {
     path: "department",
     component: DepartmentComponent

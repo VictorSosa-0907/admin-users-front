@@ -3,6 +3,8 @@ import { Column, GridOption, AngularGridInstance, FieldType, Editors, Formatters
 import * as XLSX from 'xlsx';
 import { User } from '../user/models/user';
 import { Deptos } from '../user/models/Deptos';
+import { UserService } from '../core/service/user.service';
+import { CataloguesService } from '../core/service/catalogues.service';
 
 
 @Component({
@@ -11,8 +13,8 @@ import { Deptos } from '../user/models/Deptos';
   styleUrls: ['./slickgrid.component.css']
 })
 export class SlickgridComponent implements OnInit {
-  @Input() userlist: User[];
-  @Input() deptos: Deptos[];
+  userlist: User[];
+  deptos: Deptos[];
 
   columnDefinitions: Column[] = [];
   gridOptions: GridOption = {};
@@ -30,15 +32,59 @@ export class SlickgridComponent implements OnInit {
 
   data: any;
   odataVersion = 2;
-  departments: any[] = [{ value: 'Título', label: 'Título' }, { value: 'Capítulo', label: 'Capítulo' }, { value: 'Sección', label: 'Sección' },
-  { value: 'Subsección', label: 'Subsección' }];
-  constructor() {
-    console.log(this.deptos);
+  // departments: any[] = [
+  //   { 
+  //   value: 'Título', 
+  //   label: 'Título' }, 
+  //   { 
+  //     value: 'Capítulo', 
+  //     label: 'Capítulo' 
+  //   }, 
+  //   { 
+  //     value: 'Sección', 
+  //     label: 'Sección' },
+  // { 
+  //   value: 'Subsección', 
+  //   label: 'Subsección' 
+  // }];
+  departments: any[] = [];
+
+  constructor(private userService: UserService, private catalogService: CataloguesService) {
+  }
+  getDepartments() {
+    this.catalogService.getDepartments().subscribe(dep => {
+      this.deptos = dep.data;
+      this.departments = [];
+      for (let i = 0; i < this.deptos.length; i++) {
+        this.departments[i] = {
+          value: this.deptos[i].id,
+          label: this.deptos[i].descrip,
+        };
+      }
+    });
+  }
+  getAllUsers(): void {
+    this.userService.getUsers().subscribe(usr => {
+      this.userlist = usr.data;
+      this.dataset = [];
+      for (let i = 0; i < this.userlist.length; i++) {
+        this.dataset[i] = {
+          id: this.userlist[i].id,
+          Nombre: this.userlist[i].name,
+          Paterno: this.userlist[i].paterno,
+          Materno: this.userlist[i].materno,
+          Direccion: this.userlist[i].address,
+          Email: this.userlist[i].mail,
+          Telefono: this.userlist[i].phones,
+          Departamento: this.userlist[i].department
+        };
+      }
+    });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.columnDefinitions = [
-      { id: 'consecutivo', name: 'No', field: 'No', width: 10, type: FieldType.number, sortable: true },
+      { id: 'No', name: 'No', field: 'No', width: 5, type: FieldType.number, sortable: true },
       { id: 'name', name: 'Nombre', field: 'Nombre', width: 30, type: FieldType.string, editor: { model: Editors.text } },
       { id: 'apat', name: 'Paterno', field: 'Paterno', width: 30, type: FieldType.string, editor: { model: Editors.text } },
       { id: 'amat', name: 'Materno', field: 'Materno', width: 30, type: FieldType.string, editor: { model: Editors.text } },
@@ -93,7 +139,9 @@ export class SlickgridComponent implements OnInit {
       },
       topPanelHeight: 35,
     };
-    this.dataset = [];
+    this.getAllUsers();
+    console.log(this.dataset);
+
 
     this.gridPaginationOptions = {
       pagination: {
@@ -136,8 +184,7 @@ export class SlickgridComponent implements OnInit {
       console.log(valuesArray);
       this.consecutivo = parseInt(valuesArray[0]);
       this.dataset[i] = {
-        id: i,
-        consecutivo: this.consecutivo,
+        No: valuesArray[0],
         Nombre: valuesArray[1],
         Paterno: valuesArray[2],
         Materno: valuesArray[3],

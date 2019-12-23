@@ -16,8 +16,6 @@ import { DepartmentComponent } from './department/department.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickgridComponent } from './slickgrid/slickgrid.component';
-import { UserAddComponent } from './user/user-add/user-add.component';
-import { UserUpdComponent } from './user/user-upd/user-upd.component';
 import { DetailComponent } from './user/detail/detail.component';
 import { EditComponent } from './user/edit/edit.component';
 import { DeleteComponent } from './user/delete/delete.component';
@@ -33,8 +31,6 @@ import { NewComponent } from './user/new/new.component';
     UserComponent,
     DepartmentComponent,
     SlickgridComponent,
-    UserAddComponent,
-    UserUpdComponent,
     DetailComponent,
     EditComponent,
     DeleteComponent,
